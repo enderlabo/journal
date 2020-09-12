@@ -14,7 +14,7 @@
     }
 
     &:hover {
-        color: darken($color: $primary, $amount: 20);
+        color: white;
     }
     
 
@@ -25,6 +25,8 @@
     background-color: $primary;
     border-radius: 3px;
     margin-bottom: 1px;
+
+    transition: 1s ease;
 
     &:disabled { 
         background-color: $disabled;
