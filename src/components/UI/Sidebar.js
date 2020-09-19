@@ -1,8 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { startLogout } from '../../redux/actions/authAction';
 import { JournalEntries } from '../Journal/JournalEntries'
+import { Loading } from '../Loading/Loading';
 
 export const Sidebar = () => {
+
+    const dispatch= useDispatch();
+    const [ checking, setChecking ] = useState(false);
+
+    const handleLogout = () => {
+        
+        setChecking(true)
+        dispatch( startLogout() )
+
+    }
+
+    if( checking ) {
+        return(
+
+            <Loading />
+        )
+    }
+
     return (
+       
         <aside className="journal__sidebar">
             <div className="journal__siderbar-navbar">
                 <h3 className="mt-5">
@@ -10,7 +32,9 @@ export const Sidebar = () => {
                     <span> EnderLab</span>
                 </h3>
 
-                <button className="btn">
+                <button className="btn"
+                onClick={ handleLogout }
+                >
                     Logout
                 </button>
 

@@ -7,4 +7,7 @@ export const types = {
     //uiReducer
     uiSetError: '[UI] Set Error',
     uiRemoveError: '[UI] Remove Error',
+
+    uiStartLoading: '[UI] set Loading',
+    uiFinishLoading: '[UI] remove loading'
 }
