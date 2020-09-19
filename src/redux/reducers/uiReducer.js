@@ -3,25 +3,27 @@ import { types } from "../../types/types"
 
 const initialState = {
     loading: false,
-    msgErr: null
+    msgError: null
 }
+
 
 export const uiReducer = ( state = initialState, action ) => {
 
-    switch ( action.types ) {
-        case types.uiSetErr:
+    switch ( action.type ) {
+        case types.uiSetError:
             return {
                 ...state,
-                msgErr: action.payload
+                msgError: action.payload
             }
-            
-        case types.uiRemoveErr:
-            return {
-                ...state,
-                msgErr: null
-            }
-            
+
+        case types.uiRemoveError:
+                return {
+                    ...state,
+                    msgError: null
+                }
+
         default:
             return state;
     }
+
 }

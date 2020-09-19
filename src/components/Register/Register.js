@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import validator from 'validator'
 import { useForm } from '../../hooks/useForm';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeErr, setErr } from '../../redux/actions/uiAction';
-import { uiReducer } from '../../redux/reducers/uiReducer';
+import { startRegisterEmailPass } from '../../redux/actions/authAction';
 
 export const RegisterScreen = () => {
 
@@ -16,43 +16,37 @@ export const RegisterScreen = () => {
     });
 
     const dispatch = useDispatch();
+    const { msgError } = useSelector( state => state.ui);
+
+    console.log(msgError);
     
     const { name, email, password, password2 } = formValues;
     
     const handleRegister = (e) => {
         e.preventDefault();
 
-        isFormValid();
+       if( isFormValid() ){
+           dispatch( startRegisterEmailPass( email, password, name ) )
+         } 
             
     }
 
     const isFormValid = () => {
-        switch ( false ) {
-            case( !validator.isEmpty( name ) ):
-                return dispatch( uiReducer({
-                    msgErr: 'The Name is required'
-                }) )
 
-            case ( validator.isEmail( email ) ):
-                return dispatch( setErr({
-                    msgErr: 'The Email is required'
-                }) )
-        
-            case( validator.isLength( password, { min: 6, max: 20 } )):
-                return dispatch( setErr({
-                    msgErr: 'The Password must not be less than 6 characters'
-                }) )
-
-            case( password === password2):
-                return dispatch( setErr({
-                    msgErr: 'The Password are not the same'
-                }) )
-
-            default:
-                return false;
+        if ( name.trim().length === 0 ) {
+            dispatch( setErr('Name is required') )
+            return false;
+        } else if ( !validator.isEmail( email ) ) {
+            dispatch( setErr('Email is not valid') )
+            return false;
+        } else if ( password !== password2 || password.length < 5 ) {
+            dispatch( setErr('Password should be at least 6 characters and match each other') )
+            return false
         }
-
+        
         dispatch( removeErr() );
+       return true;
+
     }
 
     return (
@@ -61,9 +55,12 @@ export const RegisterScreen = () => {
 
            <form onSubmit={ handleRegister }>
 
-            <div className="auth__alert-error">
-                Please refill all fields
-            </div>
+            { 
+                msgError &&
+                <div className="auth__alert-error">
+                        { msgError }
+                </div>
+            }
 
                     <input
                     type="text"
@@ -80,6 +77,7 @@ export const RegisterScreen = () => {
                     placeholder="Email"
                     name="email"
                     autoComplete="off"
+                    
                     className="auth__input"
                     value={ email }
                     onChange={ handleInputRegister }
@@ -90,6 +88,7 @@ export const RegisterScreen = () => {
                     type="password"
                     placeholder="Password"
                     name="password"
+                    autoComplete="off"
                     className="auth__input"
                     value={ password }
                     onChange={ handleInputRegister }

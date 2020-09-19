@@ -5,6 +5,6 @@ export const types = {
     logout: '[Auth] logout',
 
     //uiReducer
-    uiSetErr: '[UI] setErr',
-    uiRemoveErr: '[UI] RemoveErr'
+    uiSetError: '[UI] Set Error',
+    uiRemoveError: '[UI] Remove Error',
 }
