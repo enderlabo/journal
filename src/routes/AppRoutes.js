@@ -6,6 +6,8 @@ import { firebase } from '../firebase/firebase-config';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/actions/authAction';
 import { Loading } from '../components/Loading/Loading';
+import { loadNotes } from '../helpers/loadNotes';
+import { setNotes } from '../redux/actions/notesAction';
 
 
 export const AppRoutes= () => {
@@ -16,12 +18,17 @@ export const AppRoutes= () => {
 
     useEffect( () => {
 
-        firebase.auth().onAuthStateChanged( user => {
+        firebase.auth().onAuthStateChanged( async ( user ) => {
             //method to use the firebase observable and keep the state information.
             if( user?.uid ) {
                 dispatch( login( user.uid, user.displayName ) );
                 //Validate auth for protected routes.
-                setIsLoggedIn( true )
+                setIsLoggedIn( true );
+
+               const notes = await loadNotes( user.uid );
+ 
+                dispatch( setNotes( notes ) );
+
             } else {
                 setIsLoggedIn( false );
             }

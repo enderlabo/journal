@@ -4,14 +4,18 @@
 }
 
 .journal__sidebar{
-    background-color: $dark-grey;
-    color:white;
+    // background-color: $dark-grey;
+    // background-image: url('/assets/back1.jpg');
+    background: rgb(224,224,5);
+    background: linear-gradient(180deg, rgba(224,224,5,1) 25%, rgba(196,26,52,1) 91%);color:white;
     display: flex;
     flex-direction: column;
     height: 100vh;
     padding-left: 10px;
     padding-right: 10px;
     width: 450px;
+
+    opacity: 0.9;
 }
 
 .journal__siderbar-navbar{
@@ -37,7 +41,7 @@
     transition: color .3s ease;
 
     &:hover {
-        color: darken($color: white, $amount: 20);
+        color: darken($color: rgba(196,26,52,1), $amount: 10);
     }
 }
 

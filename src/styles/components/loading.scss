@@ -18,7 +18,9 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background-color:#eb8c34;
+    // background-color:#eb8c34;
+    background: linear-gradient(180deg, rgba(224,224,5,1) 25%, rgba(196,26,52,1) 91%);color:white;
+
     display:flex;
     justify-content: center;
     align-items: center;
