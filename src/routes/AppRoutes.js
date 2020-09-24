@@ -6,8 +6,7 @@ import { firebase } from '../firebase/firebase-config';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/actions/authAction';
 import { Loading } from '../components/Loading/Loading';
-import { loadNotes } from '../helpers/loadNotes';
-import { setNotes } from '../redux/actions/notesAction';
+import {  startLoadingNotes } from '../redux/actions/notesAction';
 
 
 export const AppRoutes= () => {
@@ -24,10 +23,8 @@ export const AppRoutes= () => {
                 dispatch( login( user.uid, user.displayName ) );
                 //Validate auth for protected routes.
                 setIsLoggedIn( true );
-
-               const notes = await loadNotes( user.uid );
  
-                dispatch( setNotes( notes ) );
+                dispatch( startLoadingNotes( user.uid ) );
 
             } else {
                 setIsLoggedIn( false );

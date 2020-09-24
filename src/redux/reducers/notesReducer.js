@@ -24,7 +24,7 @@ export const notesReducer = ( state = initialState, action ) => {
             console.log(action.payload)
             return {
                 ...state,
-                notes: [ ...action.payload ] 
+                notes: [ ...action.payload ]  
             }
 
         default:

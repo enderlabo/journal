@@ -34,11 +34,11 @@ export const Sidebar = () => {
         <aside className="journal__sidebar">
             <div className="journal__siderbar-navbar">
                 <h3 className="mt-5">
-                    <i className="far fa-moon"></i>
+                    <i className="fa fa-user-circle" aria-hidden="true"></i>
                     <span> { name }</span>
                 </h3>
 
-                <button className="btn"
+                <button className="btnS"
                 onClick={ handleLogout }
                 >
                     Logout
