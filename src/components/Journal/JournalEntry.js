@@ -1,17 +1,28 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-export const JournalEntry = () => {
+export const JournalEntry = ({ id, body, title, date, url }) => {
+
+   
+
+
     return (
-        <div className="journal__entry pointer">
-            <div className="journal__entry-picture"
-            style={{ backgroundSize: 'cover',
-            backgroundImage: 'url(https://miracomosehace.com/wp-content/uploads/mch/id_431.jpg)' }}>
 
-            </div>
+
+        <div className="journal__entry pointer">
+                {/* If url exist */}
+            { 
+                url &&
+                    <div className="journal__entry-picture"
+                    style={{ backgroundSize: 'cover',
+                            backgroundImage: `url(${ url })` 
+                    }}></div>
+
+            }
 
             <div className="journal__entry-body">
-                <p className="journal__entry-title"> A Good Day</p>
-                <p className="journal__entry-content"> A Beautiful Day for watch Game of Throne </p>
+                <p className="journal__entry-title"> { title }</p>
+                <p className="journal__entry-content"> { body } </p>
 
             </div>
 
