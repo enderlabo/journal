@@ -5,9 +5,7 @@ import { JournalEntry } from './JournalEntry';
 export const JournalEntries = () => {
 
     const { notes } = useSelector( aux => aux.notes );
-   
 
-    console.log(notes);
 
 
     return (
