@@ -3,6 +3,7 @@ import { firebase, googleAuthProvider } from "../../firebase/firebase-config";
 import { finishLoading, startLoading } from "./uiAction";
 
 import Swal from 'sweetalert2';
+import { notesLogoutClean } from "./notesAction";
 
 
 //Task async
@@ -78,6 +79,7 @@ export const startLogout = () => {
        await firebase.auth().signOut();
 
        dispatch( logout() );
+       dispatch( notesLogoutClean() )
     }
 }
 

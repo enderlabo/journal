@@ -19,6 +19,15 @@ export const notesReducer = ( state = initialState, action ) => {
             }
 
         }
+        case types.notesAddNew:
+            return {
+                ...state,
+                notes: [ 
+                    action.payload, 
+                    ...state 
+                ]
+
+            }
         //save array on Store
         case types.notesLoad:
             console.log(action.payload)
@@ -35,6 +44,20 @@ export const notesReducer = ( state = initialState, action ) => {
                         ? action.payload.notes
                         : note
                 )
+            }
+        //Deleted entries sidebar
+        case types.notesDeleted:
+            return {
+                ...state,
+                active: null,
+                notes: state.notes.filter( note => note.id !== action.payload )
+            }
+        //Clean notes on Store
+        case types.notesLogoutClean:
+            return {
+                ...state,
+                active: null,
+                notes: []
             }
             
         default:

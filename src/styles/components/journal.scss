@@ -6,8 +6,8 @@
 .journal__sidebar{
     // background-color: $dark-grey;
     // background-image: url('/assets/back1.jpg');
-    background: rgb(224,224,5);
-    background: linear-gradient(180deg, rgba(224,224,5,1) 25%, rgba(196,26,52,1) 91%);color:white;
+    background: rgba(196,26,52,1);
+    background: linear-gradient(180deg, #0516ff 25%, #ff0505 91%);color:white;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -50,6 +50,7 @@
 
 .journal__entries {
     flex: 1 1 auto;
+    justify-content: space-between;
     margin-top: 30px;
     overflow-y: scroll;
 }
